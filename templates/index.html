@@ -1,0 +1,123 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Taylor Series</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script>
+    MathJax = {
+      tex: { tags: 'ams'}
+    };
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://www.desmos.com/api/v1.5/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+</head>
+
+<body>
+
+  <div id="header">
+    <h2> Taylor Polynomials/Series </h2>
+    <h5>By Matthew, Sam, and Shrey</h3>
+  </div>
+  <br>
+  <h4 class="text-center">A little bit about Taylor polynomials</h4>
+  <div class="container text-center content">
+    <p>
+      Taylor Polynomials take local linear approximations and expand them so that the approximation is more 
+      accurate. As a reminder, Local Linear Approximations involve taking the derivative of a function at a 
+      point a and using the tangent line to find the approximate value of numbers very close to the function. 
+      This works because functions behave in a linear function over extremely small intervals. However, notice 
+      that the Local Linear approximation is written in slope-intercept form: $$f(x)f'(x)(x-a)+f(a).$$So there is 
+      another way of thinking about this function. Let’s flip it using the commutative property: 
+      $$f(x)f(a)+f'(x)(x-a)$$.Notice that the first value, \(f(a)\),specifies the y-value of the function. 
+      So if you used only that, you would get a horizontal line that crosses \(f(x)\) at \(x=a\). This is itself an 
+      approximation for points around, although not a very accurate one.  By taking the derivative, we can get 
+      a more accurate version. So how can we make a Local Linear Approximation more accurate? Well, 
+      consider that a Local Linear approximation is linear-a line. The reason it fails so quickly is 
+      because nonlinear functions curve. So what if our approximation curves too?
+    </p>
+    <p class="">
+      Taylor Polynomials do this. Essentially, they take the local linear approximation and add terms 
+      at higher derivatives, thus turning the approximating function into a more accurate approximation. 
+      A first degree Taylor polynomial is therefore a local linear approximation. A second-degree Taylor 
+      polynomial would take the local linear approximation and add to it the second derivative of that 
+      function. Graphically, this would match the concavity of the function. However, we cannot just add 
+      the second derivative and call it a day. Just like the local linear approximation is a line in 
+      slope-intercept form, the second-degree Taylor polynomial is quadratic. Of course, we can’t just 
+      plug in the second derivative and call it a day. In order for that approximation to work, the 
+      quadratic we construct has to, at the very least, equal \(f''(x)\) at \(x=a\). Mathematically, that means 
+      that our quadratic $$f(x)c1(x-a)2+c2(x-a)+c3$$ must have a second derivative that equals \(f''(a)\) at \(x=a\). 
+      Notice that the \(c2\) and \(c3\) terms disappear as we take derivatives, leaving only the a term, which, 
+      after taking the derivative twice, equals \(2c1\). Notice that the \(c2\) and \(c3\) terms are a local linear 
+      approximation, as established earlier, so the function can be rewritten as $$f(x)c1(x-a)2+f'(a)(x-a)+f(a).$$
+      It follows logically then that \(c1=f''(x)\), so in order for the second derivatives to match, 
+      the \(c1\) term must be halved, creating the final second-degree approximation of 
+      $$f(x)f''(a)2(x-a)2+f'(a)(x-a)+f(a).$$ Finally, notice that the reason why the second derivative is 
+      divided by two is because of the power rule, so that the constant in front of the constant term is 
+      equal to \(2!\), as opposed to just the number two. If we were to expand this to a third-degree polynomial, 
+      the constant term that we would have to cancel out would be \(123=3!\),and the third-degree approximation 
+      would be, when written out, $$f(x)f(a)+f'(x)1!(x-a)+f''(a)2!(x-a)2+f'''(x)3!(x-a)3.$$
+    </p>
+  </div>
+  <br>
+  <div>
+    <h4 class="text-center">Graphic demos</h4>
+    <div class="row center-block" style="width:90vw; padding-left: 10vw;">
+      <div class="col">
+        <div id="calculator1"  style="width: 40vw; height: 50vh; "></div>
+        <script src="{{ url_for('static', filename='graph1.js') }}"></script>
+        <br>
+        <div class='container' style="width:75%">
+          <div class="slidecontainer">
+            <div class="text-center">
+              <label for="cSlider">
+                <p id="eq1">$$f(x) = \\cos(x)$$</p>
+                <p id="eq2">$$y = f(c) + f'(c)(x-c)$$</p>
+              </label>
+              <div style="padding-top:10%;">
+                <p class="sliderval" id="cval"></p>
+                <input type="range" min="-100" max="100" value="-100" class="custom-range slider" oninput="updateC()" id="cSlider">
+                <button class="btn btn-outline-secondary" id="ctoggle" onclick="stopCSlider()">stop</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="col">
+        <div id="calculator2" style="width: 40vw; height: 50vh;"></div>
+        <script src="{{ url_for('static', filename='graph2.js') }}"></script>
+        <br>
+        <div class='container' style="width:75%">
+          <div class="slidecontainer">
+            <div class="text-center">
+              <label for="tSlider">
+                <p id="eq1">$$f(x) = e^x$$</p>
+                <p id="eq2">$$y = \sum_{n=0}^{t} (x^n)/(n!)$$</p>
+              </label>
+              <p class="sliderval" id="tval"></p>
+              <input type="range" min="0" max="10" value="0" class="custom-range slider" oninput="updateT()" id="tSlider">
+              <button class="btn btn-outline-secondary" id="ttoggle" onclick="stopTSlider()">stop</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</body>
+</html>

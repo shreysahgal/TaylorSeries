@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Computer Modern";
+    src: url(cmunrm-webfont.eot);
+}
+
+#header {
+    font-family: 'Computer Modern';
+    text-align: center;
+    background: #CCCCCC;
+    padding: .2em 1em;
+    border-top: 3px solid #666666;
+    border-bottom: 3px solid #666666;
+}
+
+.sliderval {
+    font-family: 'Computer Modern';
+    font-size: 19px;
+}
+
+.content {
+    font-family: 'Computer Modern';
+}
+
+p {
+    font-size: 18px;
+}
+
+h4 {
+    font-family: 'Computer Modern';
+}
+
+.row {
+    display: flex; /* equal height of the children */
+  }
+  
+  .col {
+    flex: 1; /* additionally, equal width */
+    
+    padding: 1em;
+    /* border: solid; */
+  }
