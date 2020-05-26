@@ -9,7 +9,7 @@ var calculator = Desmos.GraphingCalculator(elt1, {
 calculator.resize();
 
 calculator.setExpression({ id: 'graph1', latex: 'f(x) = \\cos(x)' });
-calculator.setExpression({ id: 'taylor', latex: "y = f(c) + f'(c)(x-c)" });
+calculator.setExpression({ id: 'taylor', latex: "y = f(c) + f'(c)(x-c) + \\frac{f''(c)(x-c)^2}{2!} + \\frac{f'''(c)(x-c)^3}{3!}" });
 calculator.setExpression({ id: 'x', latex: 'x=c', hidden: true });
 
 function updateC() {
