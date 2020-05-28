@@ -102,11 +102,9 @@
         <div class='container' style="width:75%">
           <div class="slidecontainer">
             <div class="text-center">
-              <label for="cSlider">
-                <p id="eq1">$$f(x) = \cos(x)$$</p>
-                <p id="eq2">$$y = f(c) + f'(c)(x-c) + \frac{f''(c)(x-c)^2}{2!} + \frac{f'''(c)(x-c)^3}{3!}$$</p>
-              </label>
-              <div style="padding-top:5%;">
+              <p id="eq1">$$f(x) = \cos(x)$$</p>
+              <p id="eq2">\(y = f(c) + f'(c)(x-c) + \frac{f''(c)(x-c)^2}{2!} + \frac{f'''(c)(x-c)^3}{3!}\)</p>
+              <div style="padding-top:10%;">
                 <p class="sliderval" id="cval"></p>
                 <input type="range" min="-100" max="100" value="-100" class="custom-range slider" oninput="updateC()" id="cSlider">
                 <button class="btn btn-outline-primary" id="ctoggle" onclick="stopCSlider()">stop</button>
@@ -137,5 +135,13 @@
   </div>
   <br>
   <br>
+  <div class="text-center" id="sources">
+    <h4>Sources</h4>
+    <br>
+    <p><a href=https://tutorial.math.lamar.edu/Classes/CalcII/TaylorSeries.aspx>https://tutorial.math.lamar.edu/Classes/CalcII/TaylorSeries.aspx</a></p>
+    <p><a href=https://www.youtube.com/watch?v=3d6DsjIBzJ4>https://www.youtube.com/watch?v=3d6DsjIBzJ4</a></p>
+    <p><a href=https://www.youtube.com/watch?v=8SsC5st4LnI>https://www.youtube.com/watch?v=8SsC5st4LnI</a></p>
+    <br>
+  </div>
 </body>
 </html>
